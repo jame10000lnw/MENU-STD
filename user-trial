@@ -1,0 +1,100 @@
+#!/bin/bash
+# Created by http://www.เฮียเบิร์ด.com
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+echo "Connecting to script.เฮียเบิร์ด.com..."
+sleep 0.2
+echo "Checking Permision..."
+sleep 0.3
+# GO TO ROOT
+MYIP=$(wget -qO- ipv4.icanhazip.com);
+myip=$(wget -qO- ipv4.icanhazip.com);
+
+flag=0
+	
+#iplist="ip.txt"
+
+wget --quiet -O iplist.txt http://xn--l3clxf6cwbe0gd7j.com/iplist.txt
+
+#if [ -f iplist ]
+#then
+
+iplist="iplist.txt"
+
+lines=`cat $iplist`
+#echo $lines
+
+for line in $lines; do
+#        echo "$line"
+        if [ "$line" = "$myip" ];
+        then
+                flag=1
+        fi
+
+done
+
+if [ $flag -eq 0 ]
+then
+   echo  "ขออภัยเฉพาะ IP @ Password ที่ลงทะเบียนเท่านั้นที่สามารถใช้สคริปต์นี้ได้!
+ติดต่อ: HERE BIRD (097-026-7262) Facebook : m.me/ceolnw" | lolcat
+	exit 1
+sleep 1
+clear
+fi
+clear
+echo "Please Wait..."
+sleep 0.5
+echo "Generating Account..."
+sleep 0.5
+echo "Generating Host..."
+sleep 0.5
+echo "Generating Username..."
+sleep 0.5
+echo "Generating Password..."
+sleep 1
+MYIP=$(wget -qO- ipv4.icanhazip.com)
+passrandom=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+
+username=trial
+egrep "^$username" /etc/passwd >/dev/null
+if [ $? -eq 0 ]; then
+# proses mengganti passwordnya
+  echo -e "$passrandom\n$passrandom" | passwd $username
+  clear
+  echo " "
+  echo -e ""| lolcat
+echo -e "|       NEW ACCOUNT INFORMATION SSH      |" | boxes -d dog | lolcat
+echo -e "============[[-SERVER-PREMIUM-]]===========" | lolcat
+  echo "------------------------------" | lolcat
+  echo "   Host     : $MYIP" | lolcat
+  echo "   Username : $username" | lolcat
+  echo "   Password : $passrandom" | lolcat
+  echo "   Port     : 22,80,109,143,443" | lolcat
+  echo "------------------------------" | lolcat
+  echo " "
+  
+else
+  useradd trial
+  usermod -s /bin/false trial
+  egrep "^$username" /etc/passwd >/dev/null
+  echo -e "$passrandom\n$passrandom" | passwd $username
+  clear
+  echo " "
+  echo -e ""| lolcat
+echo -e "|       NEW ACCOUNT INFORMATION SSH      |" | boxes -d dog | lolcat
+echo -e "============[[-SERVER-PREMIUM-]]===========" | lolcat
+  echo "------------------------------" | lolcat
+  echo "   Host     : $MYIP" | lolcat
+  echo "   Username : $username" | lolcat
+  echo "   Password : $passrandom" | lolcat
+  echo "   Port     : 22,80,109,143,443" | lolcat
+  echo "------------------------------" | lolcat
+  echo " "
+echo -e "===========================================" | lolcat
+echo -e "   Admin & Detail  :                       "| lolcat
+echo -e "   HACKING-DDOS-PHISING-SPAM-TORENT        " | lolcat
+echo -e "   HEREBIRD & OCSPANEL.INFO                "| lolcat
+echo -e "   Script by 097-026-7262                  "| lolcat
+echo -e "===========================================" | lolcat
+fi

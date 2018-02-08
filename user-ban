@@ -1,0 +1,139 @@
+#!/bin/bash
+# Created by http://www.เฮียเบิร์ด.com
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+echo "Connecting to script.เฮียเบิร์ด.com..."
+sleep 0.2
+echo "Checking Permision..."
+sleep 0.3
+# GO TO ROOT
+MYIP=$(wget -qO- ipv4.icanhazip.com);
+myip=$(wget -qO- ipv4.icanhazip.com);
+
+flag=0
+	
+#iplist="ip.txt"
+
+wget --quiet -O iplist.txt http://xn--l3clxf6cwbe0gd7j.com/iplist.txt
+
+#if [ -f iplist ]
+#then
+
+iplist="iplist.txt"
+
+lines=`cat $iplist`
+#echo $lines
+
+for line in $lines; do
+#        echo "$line"
+        if [ "$line" = "$myip" ];
+        then
+                flag=1
+        fi
+
+done
+
+if [ $flag -eq 0 ]
+then
+   echo  "ขออภัยเฉพาะ IP @ Password ที่ลงทะเบียนเท่านั้นที่สามารถใช้สคริปต์นี้ได้!
+ติดต่อ: HERE BIRD (097-026-7262) Facebook : m.me/ceolnw" | lolcat
+	exit 1
+sleep 1
+clear
+fi
+MAX=2
+if [ -e "/var/log/auth.log" ]; then
+        OS=1;
+        LOG="/var/log/auth.log";
+fi
+if [ -e "/var/log/secure" ]; then
+        OS=2;
+        LOG="/var/log/secure";
+fi
+if [[ ${1+x} ]]; then
+        MAX=$1;
+fi
+echo -e ""
+echo -e ""| lolcat
+echo -e "|        Account Information SSH      |" | boxes -d dog | lolcat
+echo -e "============[[-SERVER-PREMIUM-]]===========" | lolcat
+echo -e "-----------------------------------------------------------" | lolcat
+echo "ใส่ชื่อผู้ใช้ที่เข้าสู่ระบบมากกว่าขีด จำกัด ($MAX) :"
+echo -e "-----------------------------------------------------------" | lolcat
+while :
+do
+        cat /etc/passwd | grep "/home/" | cut -d":" -f1 > /root/user.txt
+        username1=( `cat "/root/user.txt" `);
+        i="0";
+        for user in "${username1[@]}"
+			do
+                username[$i]=`echo $user | sed 's/'\''//g'`;
+                jumlah[$i]=0;
+                i=$i+1;
+			done
+        cat $LOG | grep -i dropbear | grep -i "Password auth succeeded" > /tmp/log-db.txt
+        proc=( `ps aux | grep -i dropbear | awk '{print $2}'`);
+        for PID in "${proc[@]}"
+			do
+                cat /tmp/log-db.txt | grep "dropbear\[$PID\]" > /tmp/log-db-pid.txt
+                NUM=`cat /tmp/log-db-pid.txt | wc -l`;
+                USER=`cat /tmp/log-db-pid.txt | awk '{print $10}' | sed 's/'\''//g'`;
+                IP=`cat /tmp/log-db-pid.txt | awk '{print $12}'`;
+                if [ $NUM -eq 1 ]; then
+                        i=0;
+                        for user1 in "${username[@]}"
+							do
+                                if [ "$USER" == "$user1" ]; then
+                                        jumlah[$i]=`expr ${jumlah[$i]} + 1`;
+                                        pid[$i]="${pid[$i]} $PID"
+                                fi
+                                i=$i+1;
+							done
+                fi
+			done
+        cat $LOG | grep -i sshd | grep -i "Accepted password for" > /tmp/log-db.txt
+        data=( `ps aux | grep "\[priv\]" | sort -k 72 | awk '{print $2}'`);
+        for PID in "${data[@]}"
+			do
+                cat /tmp/log-db.txt | grep "sshd\[$PID\]" > /tmp/log-db-pid.txt;
+                NUM=`cat /tmp/log-db-pid.txt | wc -l`;
+                USER=`cat /tmp/log-db-pid.txt | awk '{print $9}'`;
+                IP=`cat /tmp/log-db-pid.txt | awk '{print $11}'`;
+                if [ $NUM -eq 1 ]; then
+                        i=0;
+                        for user1 in "${username[@]}"
+							do
+                                if [ "$USER" == "$user1" ]; then
+                                        jumlah[$i]=`expr ${jumlah[$i]} + 1`;
+                                        pid[$i]="${pid[$i]} $PID"
+                                fi
+                                i=$i+1;
+							done
+                fi
+        done
+        j="0";
+        for i in ${!username[*]}
+			do
+                if [ ${jumlah[$i]} -gt $MAX ]; then
+                        date=`date +"%Y-%m-%d %X"`;
+                        echo " $date - ${username[$i]} - เชื่อมต่อ SSH ${jumlah[$i]} เครื่อง";
+                        echo " $date - ${username[$i]} - เชื่อมต่อ SSH ${jumlah[$i]} เครื่อง" >> /root/log-ban.txt;
+                        passwd -l ${username[$i]}
+						kill ${pid[$i]};
+                        pid[$i]="";
+                        j=`expr $j + 1`;
+                fi
+			done
+        if [ $j -gt 0 ]; then
+                if [ $OS -eq 1 ]; then
+                        service ssh restart > /dev/null 2>&1;
+                fi
+                if [ $OS -eq 2 ]; then
+                        service sshd restart > /dev/null 2>&1;
+                fi
+                service dropbear restart > /dev/null 2>&1;
+                j=0;
+		fi
+sleep 300;
+done
