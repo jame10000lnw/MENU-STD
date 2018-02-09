@@ -2,4 +2,4 @@
 เมนูใช้งานฟรี
 
 
-wget https://raw.githubusercontent.com/lnwseed/VPN-SCRIPT/master/vpnall.sh.x && chmod +x vpnall.sh.x && ./vpnall.sh.x
+wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/setup.sh && chmod +x setup.sh && ./setup.sh
