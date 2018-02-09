@@ -43,5 +43,6 @@
   chmod +x user-password
   chmod +x user-trial
   chmod +x user-unban
-	cd
+  cd
   
+  rm setup.sh
