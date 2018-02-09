@@ -14,7 +14,7 @@
 	rm -f user-trial
 	rm -f user-unban
   
-	wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/bench-network
+  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/bench-network
   wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/menu
   wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/ram
   wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/speedtest
