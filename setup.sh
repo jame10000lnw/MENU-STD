@@ -14,20 +14,20 @@
 	rm -f user-trial
 	rm -f user-unban
   
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/bench-network
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/menu
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/ram
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/speedtest
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-add
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-addday
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-ban
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-delete
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-generate
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-limit
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-list
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-password
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-trial
-  wget http://xn--l3clxf6cwbe0gd7j.com/ocspanel/menufree/user-unban     
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/bench-network
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/menu
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/ram
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/speedtest
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-add
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-addday
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-ban
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-delete
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-generate
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-limit
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-list
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-password
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-trial
+  wget https://raw.githubusercontent.com/lnwseed/MENU-STD/master/user-unban     
   
   chmod +x bench-network
   chmod +x menu
